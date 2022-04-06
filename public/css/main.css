@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+}
+header #logo, .header-wrapper  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#logo > a {
+    width: 70px;
+}
+ul.user-action {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+}
+#header {
+    padding: 5px 50px;
+    box-shadow: 0 1px 2px hsl(0deg 0% 0% / 5%), 0 1px 4px hsl(0deg 0% 0% / 5%), 0 2px 8px hsl(0deg 0% 0% / 5%);
+}
+ul.user-action li:not(:first-child) {
+    margin-left: 15px;
+}
+ul.user-action li a {
+    text-decoration: none;
+    color: #000;
+}
+.manager-user table {
+    width: 100%;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+    margin-top: 25px;
+    background-color: #fff;
+    border-spacing: 0;
+}
+.manager-user table th, .manager-user table td {
+    border-bottom: 1px solid #ccd0d4;
+    padding: 8px;
+}
+.manager-user table tr {
+    transition: 0.3s;
+}
+.manager-user table tbody tr:hover {
+    background-color: #80808021;
+}
+.text-center {
+    text-align: center;
+}
+.manager-user table tr span {
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.3s;
+}
+.edit {
+    background-color: green;
+}
+.remove {
+    background-color: red;
+}
+.add-user {
+    margin: 50px 20px 20px;
+    text-align: right;
+    float: right;
+    padding: 5px;
+    background-color: blue;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
