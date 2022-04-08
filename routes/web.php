@@ -29,10 +29,10 @@ Route::middleware([
 });
 
 Route::group(['prefix'=>'user'],function(){
-	Route::get('/',[UserController::class, 'index'])->name('user');
+	Route::get('/',[UserController::class, 'index'])->name('user.index');
 	Route::get('/create',[UserController::class, 'create'])->name('user.create');
 	Route::post('/create',[UserController::class, 'store'])->name('user.store');
 	Route::get('/edit/{id}',[UserController::class, 'edit'])->name('user.edit');
 	Route::post('/edit/{id}',[UserController::class, 'update'])->name('user.update');
-	Route::post('/delete/{id}',[UserController::class, 'delete'])->name('user.delete');
+	Route::post('/delete/{id}',[UserController::class, 'destroy'])->name('user.destroy');
 });

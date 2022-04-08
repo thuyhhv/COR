@@ -27,12 +27,12 @@ ul.user-action li a {
     color: #000;
 }
 .manager-user table {
-    width: 100%;
+    width: 80%;
     border: 1px solid #ccd0d4;
     box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
-    margin-top: 25px;
     background-color: #fff;
     border-spacing: 0;
+    margin: 25px auto;
 }
 .manager-user table th, .manager-user table td {
     border-bottom: 1px solid #ccd0d4;
@@ -47,12 +47,18 @@ ul.user-action li a {
 .text-center {
     text-align: center;
 }
-.manager-user table tr span {
+.manager-user table tr a, .manager-user table tr .remove {
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
     color: #fff;
     transition: 0.3s;
+    text-decoration: none;
+    border: 1px solid transparent;
+    height: 30px;
+}
+.manager-user table tr form {
+    display: inline-block;
 }
 .edit {
     background-color: green;
@@ -61,12 +67,64 @@ ul.user-action li a {
     background-color: red;
 }
 .add-user {
+    text-align: right;
+}
+.add-user span {
     margin: 50px 20px 20px;
     text-align: right;
-    float: right;
     padding: 5px;
     background-color: blue;
     border-radius: 5px;
     color: #fff;
+    cursor: pointer;
+    display: inline-block;
+}
+.manager-user table thead tr {
+    background: #80808063;
+}
+#edit-user, #create-user {
+    width: 100%;
+    margin: auto;
+    max-width: 400px;
+    border: 1px solid gray;
+    margin-top: 50px;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+}
+#edit-user h3, #create-user h3 {
+    font-size: 22px;
+}
+#edit-user form label, #create-user form label {
+    min-width: 130px;
+    text-align: left;
+    display: inline-block;
+}
+#edit-user .form-group, #create-user .form-group {
+    margin-bottom: 10px;
+}
+#edit-user form input, #create-user form input {
+    height: 27px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    width: calc(100% - 170px);
+}
+#edit-user form .list-btn, #create-user form .list-btn {
+    margin-top: 20px;
+}
+#edit-user form .list-btn .back, #create-user form .list-btn .back {
+    background: green;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #fff;
+}
+#edit-user .list-btn input.button, #create-user .list-btn input.button {
+    height: 29px;
+    width: auto;
     cursor: pointer;
 }
