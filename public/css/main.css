@@ -128,3 +128,8 @@ ul.user-action li a {
     width: auto;
     cursor: pointer;
 }
+ul.user-action li button {
+    border: none;
+    background: transparent;
+    padding: 0;
+}

@@ -37,17 +37,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'user_name' => 'required|min:3|max:10',
             'email' => 'required|email',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
-        ],[
+        ];
+        $messages = [
             'user_name.required'=>'Please enter your name!',
-            'email.email'=>'Please enter your email !',
+            'email.email'=>'Email is wrong format !',
             'password.required'=>'Please enter password!',
-            'password.confirmed'=>'Password incorrect !',
-        ]);
+            'password.confirmed'=>'Confirm password is incorrect !',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
         if ($validator->fails()){
             return redirect()->route('user.create')->withErrors($validator)->withInput();
         }else{
@@ -94,17 +97,19 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'user_name' => 'required|min:3|max:10',
             'email' => 'required|email',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
-        ],[
+        ];
+        $messages = [
             'user_name.required'=>'Please enter your name!',
-            'email.email'=>'Please enter your email !',
+            'email.email'=>'Email is wrong format !',
             'password.required'=>'Please enter password!',
-            'password.confirmed'=>'Password incorrect !',
-        ]);
+            'password.confirmed'=>'Confirm password is incorrect !',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()){
             return redirect()->route('user.edit',$id)->withErrors($validator)->withInput();
         }else{
@@ -134,4 +139,10 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('user.index');
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 }

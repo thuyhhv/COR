@@ -12,7 +12,12 @@
         <?php if (Auth::check()) {?>
             <li><a href="/user/profile" class="profile-button" style="cursor: pointer;"><?php echo Auth::user()->name ?></a></li>
             <li><a href="/user" class="manager-button" style="cursor: pointer;">Quản lý User</a></li>
-            <li><a href="/logout" class="manager-button" style="cursor: pointer;">Log Out</a></li>
+            <li>
+                <form method="POST" action="{{ route('logout') }}" class="manager-button">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
         <?php } else {?>
             <li><a href="/login" class="login-button" style="cursor: pointer;">Đăng nhập</a></li>
             <li><a href="/register" class="register-button">Đăng ký</a></li>

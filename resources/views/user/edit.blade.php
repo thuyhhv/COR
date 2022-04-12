@@ -25,12 +25,12 @@
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" value="{{ $user->password }}" placeholder="Password">
+                    <input type="password" id="password" name="password" value="" placeholder="*********">
                 </div>
                 
                 <div class="form-group">
                     <label for="password_confirmation">Re-enter Password</label>
-                    <input type="password" id="password_confirmation" name="password_confirmation" value="{{ $user->password }}" placeholder="Re-enter Password">
+                    <input type="password" id="password_confirmation" name="password_confirmation" value="" placeholder="*********">
                 </div>
 
                 <div class="form-group list-btn">
