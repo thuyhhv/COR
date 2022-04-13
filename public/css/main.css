@@ -82,7 +82,7 @@ ul.user-action li a {
 .manager-user table thead tr {
     background: #80808063;
 }
-#edit-user, #create-user {
+#edit-user, #create-user, #login, #register {
     width: 100%;
     margin: auto;
     max-width: 400px;
@@ -92,18 +92,18 @@ ul.user-action li a {
     padding: 10px;
     text-align: center;
 }
-#edit-user h3, #create-user h3 {
+#edit-user h3, #create-user h3, #login h3, #register h3{
     font-size: 22px;
 }
-#edit-user form label, #create-user form label {
+#edit-user form label, #create-user form label, #login form label, #register form label {
     min-width: 130px;
     text-align: left;
     display: inline-block;
 }
-#edit-user .form-group, #create-user .form-group {
+#edit-user .form-group, #create-user .form-group, #login .form-group, #register .form-group {
     margin-bottom: 10px;
 }
-#edit-user form input, #create-user form input {
+#edit-user form input, #create-user form input, #login .form-group > input, #register .form-group > input {
     height: 27px;
     font-size: 14px;
     border-radius: 6px;
@@ -111,7 +111,7 @@ ul.user-action li a {
     padding: 5px 10px;
     width: calc(100% - 170px);
 }
-#edit-user form .list-btn, #create-user form .list-btn {
+#edit-user form .list-btn, #create-user form .list-btn, #login form .list-btn, #register .list-btn {
     margin-top: 20px;
 }
 #edit-user form .list-btn .back, #create-user form .list-btn .back {
@@ -132,4 +132,27 @@ ul.user-action li button {
     border: none;
     background: transparent;
     padding: 0;
+    cursor: pointer;
+}
+.list-note {
+    color: red;
+    margin-top: 20px;
+}
+#login .login-btn input, #register .list-btn input {
+    color: #fff;
+    background: #008037;
+    border: 1px solid #008037;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 6px 15px;
+    border-radius: 8px;
+    width: 100%;
+    height: unset;
+    cursor: pointer;
+}
+#login form .list-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

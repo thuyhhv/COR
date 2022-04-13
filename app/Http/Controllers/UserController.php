@@ -99,13 +99,13 @@ class UserController extends Controller
         
         $rules = [
             'user_name' => 'required|min:3|max:10',
-            'email' => 'required|email',
+            /*'email' => 'required|email',*/
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
         ];
         $messages = [
             'user_name.required'=>'Please enter your name!',
-            'email.email'=>'Email is wrong format !',
+            /*'email.email'=>'Email is wrong format !',*/
             'password.required'=>'Please enter password!',
             'password.confirmed'=>'Confirm password is incorrect !',
         ];
@@ -115,7 +115,7 @@ class UserController extends Controller
         }else{
             $attr = User::findOrFail($id);
             $attr['name'] = $request->user_name;
-            $attr['email'] = $request->email;
+            /*$attr['email'] = $request->email;*/
             $attr['password'] = Hash::make($request->password);
             $attr->save();
             if($attr){
@@ -140,9 +140,9 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    public function __construct()
+    /* public function __construct()
     {
         $this->middleware('auth');
-    }
+    }*/
 
 }
