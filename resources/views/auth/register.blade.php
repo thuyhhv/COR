@@ -21,28 +21,28 @@
 
     <div id="register">
         
-        <h3>Register</h3>
+        <h3>{{ __('Register') }}</h3>
         <form method="POST" action="{{ route('register') }}">
             @csrf
             @method('POST')
             
             <div class="form-group">
-                <label for="name">Tên</label>
+                <label for="name">{{ __('Tên') }}</label>
                 <input type="text" id="user_name" name="name" value="{{ Request::old('user_name') }}" placeholder="User name">
             </div>
 
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">{{ __('Email') }}</label>
                 <input type="email" id="email" name="email" value="{{ Request::old('email') }}" placeholder="Email">
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">{{ __('Password') }}</label>
                 <input type="password" id="password" name="password" value="" placeholder="Password">
             </div>
             
             <div class="form-group">
-                <label for="password_confirmation">Re-enter Password</label>
+                <label for="password_confirmation">{{ __('Re-enter Password') }}</label>
                 <input type="password" id="password_confirmation" name="password_confirmation" value="" placeholder="Re-enter Password">
             </div>
 
@@ -52,7 +52,7 @@
             
             @if($er_email == true || $er_pass == true || $name == true || $password_confirmation == true )
                 <div class="list-note">
-                    <div class="">Whoops! Something went wrong.</div>
+                    <div class="">{{ __('Whoops! Something went wrong.') }}</div>
                     
                     @error('email')
                         <span class="note">

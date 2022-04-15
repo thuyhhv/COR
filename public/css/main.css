@@ -127,6 +127,7 @@ ul.user-action li a {
     height: 29px;
     width: auto;
     cursor: pointer;
+    display: inline-block;
 }
 ul.user-action li button {
     border: none;
@@ -155,4 +156,42 @@ ul.user-action li button {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .manager-user table {
+        width: 1000px;
+    }
+    .manager-user .list-user {
+        white-space: normal;
+        overflow-x: scroll;
+    }
+    .manager-user .box-table {
+        width: 90%;
+        margin: auto;
+    }
+
+}
+@media only screen and (max-width: 480px) {
+    #logo > a {
+        width: 50px;
+    }
+    #edit-user, #create-user, #login, #register {
+        max-width: 80%;
+    }
+    #edit-user form label, #create-user form label, #login form label, #register form label {
+        display: block;
+    }
+    #edit-user form input, #create-user form input, #login .form-group > input, #register .form-group > input {
+        width: calc(100% - 20px);
+        margin-top: 6px;
+        display: block;
+    }
+    #login .login-btn input, #register .list-btn input {
+        width: 100%;
+    }
+    #header {
+        padding: 5px 20px;
+    }
 }

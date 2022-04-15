@@ -13,18 +13,18 @@
 
     <div id="login">
         
-        <h3>Login</h3>
+        <h3>{{ __('Login') }}</h3>
         <form method="POST" action="{{ route('login') }}">
             @csrf
             @method('POST')
             
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">{{ __('Email') }}</label>
                 <input type="email" id="email" name="email" value="{{ Request::old('email') }}" placeholder="Email">
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">{{ __('Password') }}</label>
                 <input type="password" id="password" name="password" value="" placeholder="Password">
             </div>
 
@@ -45,13 +45,13 @@
                 @endif
             </div>
 
-            <div class="form-group login-reg">Not a member yet? 
-                <a href="/register" id="showRegister">Register an account</a>
+            <div class="form-group login-reg">{{ __('Not a member yet?') }} 
+                <a href="/register" id="showRegister">{{ __('Register an account') }}</a>
             </div>
             
             @if($er_email == true || $er_pass == true )
                 <div class="list-note">
-                    <div class="">Whoops! Something went wrong.</div>
+                    <div class="">{{ __('Whoops! Something went wrong.') }}</div>
                     @error('email')
                         <span class="note">
                             <strong>{{ $message }}</strong>
