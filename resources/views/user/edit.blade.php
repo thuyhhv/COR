@@ -1,20 +1,5 @@
 @extends('admin.index')
 @section('content')
-    <?php 
-        $er_pass = false; 
-        $user_name = false;
-        $password_confirmation = false;
-    ?>
-    
-    @error('password')
-        <?php $er_pass = true; ?>
-    @enderror
-    @error('user_name')
-        <?php $user_name = true; ?>
-    @enderror
-    @error('password_confirmation')
-        <?php $password_confirmation = true; ?>
-    @enderror
 
     <div id="edit-user">
         
@@ -26,11 +11,6 @@
                 <div class="form-group">
                     <label for="user_name">{{ __('Tên') }}</label>
                     <input type="text" id="user_name" name="user_name" value="{{ $user->name }}" placeholder="User name">
-                    @error('user_name')
-                        <span class="invalid-form">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -53,24 +33,14 @@
                     <input type="submit" class="button" value="Update">
                 </div>
                 
-                @if($er_pass == true || $user_name == true || $password_confirmation == true )
+                @if ($errors->any())
                     <div class="list-note">
                         <div class="">{{ __('Whoops! Something went wrong.') }}</div>
-                        @error('password')
+                        @foreach ($errors->all() as $error)
                             <span class="note">
-                                <strong>{{ $message }}</strong>
+                                <strong>{{ $error }}</strong>
                             </span>
-                        @enderror
-                        @error('user_name')
-                            <span class="note">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        @error('password_confirmation')
-                            <span class="note">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        @endforeach
                     </div>
                 @endif
             </form>

@@ -1,23 +1,5 @@
 @extends('admin.index')
 @section('content')
-    <?php 
-        $er_email = false; 
-        $er_pass = false; 
-        $name = false;
-        $password_confirmation = false;
-    ?>
-    @error('email')
-        <?php $er_email = true; ?>
-    @enderror
-    @error('password')
-        <?php $er_pass = true; ?>
-    @enderror
-    @error('name')
-        <?php $name = true; ?>
-    @enderror
-    @error('password_confirmation')
-        <?php $password_confirmation = true; ?>
-    @enderror
 
     <div id="register">
         
@@ -50,30 +32,14 @@
                 <input type="submit" class="button" value="Register">
             </div>
             
-            @if($er_email == true || $er_pass == true || $name == true || $password_confirmation == true )
+            @if ($errors->any())
                 <div class="list-note">
                     <div class="">{{ __('Whoops! Something went wrong.') }}</div>
-                    
-                    @error('email')
+                    @foreach ($errors->all() as $error)
                         <span class="note">
-                            <strong>{{ $message }}</strong>
+                            <strong>{{ $error }}</strong>
                         </span>
-                    @enderror
-                    @error('password')
-                        <span class="note">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    @error('name')
-                        <span class="note">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    @error('password_confirmation')
-                        <span class="note">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    @endforeach
                 </div>
             @endif
         </form>

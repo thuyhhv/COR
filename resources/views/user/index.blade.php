@@ -1,7 +1,7 @@
 @extends('admin.index')
 @section('content')
     <div class="manager-user">
-        <div class="add-user"><a href="{{ route('user.create') }}" class="button"><span>{{ __('Add user') }}</span></a></div>
+        <div class="add-user"><a href="{{ route('user.create') }}" class="button"><span>{{ __('Add user') }}</span></a></div> 
         <div class="list-user">
             <div class="box-table">
                 <table class="table table-hover table-list-user">
