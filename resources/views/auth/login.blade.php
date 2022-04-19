@@ -1,48 +1,69 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('admin.index')
+@section('content')
+    <?php 
+        $er_email = false; 
+        $er_pass = false; 
+    ?>
+    @error('email')
+        <?php $er_email = true; ?>
+    @enderror
+    @error('password')
+        <?php $er_pass = true; ?>
+    @enderror
 
-        <x-jet-validation-errors class="mb-4" />
-
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
-
+    <div id="login">
+        
+        <h3>Login</h3>
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            @method('POST')
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{ Request::old('email') }}" placeholder="Email">
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" value="" placeholder="Password">
             </div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
+            <div class="form-group login-btn">
+                <input type="submit" class="button" value="Login">
+            </div>
+
+            <div class="form-group list-btn">
+                <label for="remember_me" class="">
+                    <input type="checkbox" name="remember" id="remember_me" {{ old('remember') ? 'checked' : '' }}>
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
+                
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-jet-button>
             </div>
+
+            <div class="form-group login-reg">Not a member yet? 
+                <a href="/register" id="showRegister">Register an account</a>
+            </div>
+            
+            @if($er_email == true || $er_pass == true )
+                <div class="list-note">
+                    <div class="">Whoops! Something went wrong.</div>
+                    @error('email')
+                        <span class="note">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    @error('password')
+                        <span class="note">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            @endif
         </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+    </div>
+@endsection
