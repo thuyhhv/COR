@@ -36,5 +36,3 @@ Route::group(['prefix'=>'user'],function(){
 	Route::post('/edit/{id}',[UserController::class, 'update'])->name('user.update');
 	Route::post('/delete/{id}',[UserController::class, 'destroy'])->name('user.destroy');
 });
-
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

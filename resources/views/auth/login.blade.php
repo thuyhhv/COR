@@ -1,30 +1,20 @@
 @extends('admin.index')
 @section('content')
-    <?php 
-        $er_email = false; 
-        $er_pass = false; 
-    ?>
-    @error('email')
-        <?php $er_email = true; ?>
-    @enderror
-    @error('password')
-        <?php $er_pass = true; ?>
-    @enderror
 
     <div id="login">
         
-        <h3>Login</h3>
+        <h3>{{ __('Login') }}</h3>
         <form method="POST" action="{{ route('login') }}">
             @csrf
             @method('POST')
             
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">{{ __('Email') }}</label>
                 <input type="email" id="email" name="email" value="{{ Request::old('email') }}" placeholder="Email">
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">{{ __('Password') }}</label>
                 <input type="password" id="password" name="password" value="" placeholder="Password">
             </div>
 
@@ -45,23 +35,18 @@
                 @endif
             </div>
 
-            <div class="form-group login-reg">Not a member yet? 
-                <a href="/register" id="showRegister">Register an account</a>
+            <div class="form-group login-reg">{{ __('Not a member yet?') }} 
+                <a href="/register" id="showRegister">{{ __('Register an account') }}</a>
             </div>
             
-            @if($er_email == true || $er_pass == true )
+            @if ($errors->any())
                 <div class="list-note">
-                    <div class="">Whoops! Something went wrong.</div>
-                    @error('email')
+                    <div class="">{{ __('Whoops! Something went wrong.') }}</div>
+                    @foreach ($errors->all() as $error)
                         <span class="note">
-                            <strong>{{ $message }}</strong>
+                            <strong>{{ $error }}</strong>
                         </span>
-                    @enderror
-                    @error('password')
-                        <span class="note">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    @endforeach
                 </div>
             @endif
         </form>
