@@ -1,8 +1,8 @@
 @extends('admin.index')
 @section('content')
 
-    <div id="create-user">
-
+<div class="container">
+    <div id="create-user" >
         <h3>{{ __('Create new user') }}</h3>
         <div class="create-form">
             <form action="{{ route('user.store') }}" enctype="multipart/form-data" method="POST">
@@ -46,4 +46,5 @@
             </form>
         </div>
     </div>
+</div>
 @endsection

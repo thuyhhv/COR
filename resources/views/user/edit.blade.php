@@ -1,8 +1,8 @@
 @extends('admin.index')
 @section('content')
 
-    <div id="edit-user">
-        
+<div class="container">
+    <div id="edit-user" >
         <h3>{{ __('Update user information') }}</h3>
         <div class="edit-form">
             <form action="{{ route('user.update',$user->id) }}" enctype="multipart/form-data" method="POST">
@@ -46,4 +46,5 @@
             </form>
         </div>
     </div>
+</div>
 @endsection

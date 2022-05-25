@@ -11,7 +11,9 @@
     <ul class="user-action">
         <?php if (Auth::check()) {?>
             <li><a href="/user/profile" class="profile-button" style="cursor: pointer;"><?php echo Auth::user()->name ?></a></li>
-            <li><a href="/user" class="manager-button" style="cursor: pointer;">Quản lý User</a></li>
+            <li><a href="{{ route('user.index') }}" class="manager-button" style="cursor: pointer;">Quản lý User</a></li>
+            <li><a href="{{ route('categories.index') }}" class="manager-button" style="cursor: pointer;">Quản lý Danh mục</a></li>
+            <li><a href="{{ route('products.index') }}" class="manager-button" style="cursor: pointer;">Quản lý Sách</a></li>
             <li>
                 <form method="POST" action="{{ route('logout') }}" class="manager-button">
                     @csrf
@@ -23,4 +25,12 @@
             <li><a href="/register" class="register-button">Đăng ký</a></li>
         <?php }?>
     </ul>
+
+    <nav class="nav-menu">
+        <div class="nav__inner">
+            <i class="slide-menu fas fa-bars"></i>
+        </div>
+    </nav> 
+
+    
 </header>

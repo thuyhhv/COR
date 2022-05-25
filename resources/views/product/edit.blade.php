@@ -1,0 +1,103 @@
+@extends('admin.index')
+@section('content')
+<div class="container">
+    <div id="edit-user">
+        
+        <h3>{{ __('Update category information') }}</h3>
+        <div class="edit-form">
+            <form action="{{ route('products.update',$products->id) }}" enctype="multipart/form-data" method="POST">
+                @csrf
+                @method('POST')
+
+                <div class="form-group">
+                    <label for="name_book">{{ __('Tên sách') }}</label>
+                    <input type="text" id="name_book" name="pro_name" value="{{ $products->pro_name }}" placeholder="Tên sách">
+                    @error('pro_name')
+                        <div class="note">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">{{ __('Số lượng') }}</label>
+                    <input type="number" id="quantity" name="pro_quantity" value="{{ $products->pro_quantity }}" placeholder="Số lượng">
+                    @error('pro_quantity')
+                        <div class="note">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">{{ __('Giá') }}</label>
+                    <input type="number" id="price" name="pro_price" value="{{ $products->pro_price }}" placeholder="Giá">
+                    @error('pro_price')
+                        <div class="note">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="description">{{ __('Mô tả') }}</label>
+                    <input type="text" id="description" name="description" value="{{ $products->description }}" placeholder="Mô tả">
+                    @error('description')
+                        <div class="note">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="category">{{ __('Danh mục') }}</label>
+                    <select name="pro_parent_id" id="category">
+                        @foreach ($categories as $k => $item)
+                            <option value="{{ $item->id }}" {{ ($products->pro_parent_id == $item->id)? 'selected':'' }}>{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('pro_parent_id')
+                        <div class="note">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-group input-group hdtuto control-group lst increment" >
+                    <label for="avatar">{{ __('Images') }}</label>
+                    <div class="list-input-hidden-upload">
+                        <input type="file" name="pro_avatar[]" id="file_upload" class="myfrm form-control hidden" accept="image/*">
+                    </div>
+                    <div class="input-group-btn"> 
+                        <button class="btn btn-success btn-add-image" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>+Add image</button>
+                    </div>
+                    @error('pro_avatar')
+                        <div class="note">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div>
+                <div class="list-images">
+                    @if (isset($products->pro_avatar) && !empty($products->pro_avatar))
+                        @foreach (json_decode($products->pro_avatar) as $key => $img)
+                            <div class="box-image">
+                                <input type="hidden" name="images_uploaded[]" value="{{ $img }}" id="img-{{ $key }}">
+                                <img src="{{ asset('files_product/'.$img) }}" class="picture-box">
+                                <div class="wrap-btn-delete"><span data-id="img-{{ $key }}" class="btn-delete-image">x</span></div>
+                            </div>
+                        @endforeach
+                        <input type="hidden" name="images_uploaded_origin" value="{{ $products->pro_avatar }}">
+                        <input type="hidden" name="id" value="{{ $products->id }}">
+                    @endif
+                </div>
+
+                <div class="form-group list-btn">
+                    <a href="{{ route('products.index') }}" class="back">{{ __('Back') }}</a>
+                    <input type="submit" class="button" value="Update">
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+@endsection

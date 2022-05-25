@@ -1,0 +1,171 @@
+.manager-category table {
+    width: 80%;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+    background-color: #fff;
+    border-spacing: 0;
+    margin: 25px auto;
+}
+
+.manager-category table th, .manager-category table td {
+    border-bottom: 1px solid #ccd0d4;
+    border-right: 1px solid #ccd0d4;
+    padding: 8px;
+}
+
+.manager-category table tr {
+    transition: 0.3s;
+}
+
+.manager-category table tbody tr:hover {
+    background-color: #80808021;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.manager-category table tr a, .manager-category table tr .remove {
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.3s;
+    text-decoration: none;
+    border: 1px solid transparent;
+    height: 30px;
+}
+
+.manager-category table tr form {
+    display: inline-block;
+}
+
+.add-book {
+    text-align: right;
+}
+
+.add-book span {
+    margin: 50px 20px 20px;
+    text-align: right;
+    padding: 5px;
+    background-color: blue;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.manager-category table thead tr {
+    background: #80808063;
+}
+
+#edit-user form .list-btn, #create-book form .list-btn, #login form .list-btn, #register .list-btn {
+    margin-top: 20px;
+}
+
+#edit-user form .list-btn .back, #create-book form .list-btn .back {
+    background: green;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #fff;
+}
+
+#login .login-btn input, #register .list-btn input {
+    color: #fff;
+    background: #008037;
+    border: 1px solid #008037;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 6px 15px;
+    border-radius: 8px;
+    width: 100%;
+    height: unset;
+    cursor: pointer;
+}
+
+#login form .list-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+input.hidden {
+    display: none !important;
+}
+
+.box-image {
+    border: 1px solid gray;
+    flex: 0 1 49%;
+    margin-bottom: 4px;
+    position: relative;
+    height: 100px;
+}
+
+.wrap-btn-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    color: red;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.list-input-hidden-upload, .list-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box-image img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 100px;
+}
+
+.container {
+    padding: 0 20px;
+    min-height: calc(100vh - 122px);
+}
+
+
+@media only screen and (max-width: 768px) {
+    .manager-category table {
+        width: 1000px;
+    }
+
+    .manager-category .list-category {
+        white-space: normal;
+        overflow-x: scroll;
+    }
+}
+@media only screen and (max-width: 480px) {
+    #logo > a {
+        width: 50px;
+    }
+
+    #edit-user, #create-book, #login, #register {
+        max-width: 80%;
+    }
+
+    #edit-user form label, #create-book form label, #login form label, #register form label {
+        display: block;
+    }
+
+    #login .login-btn input, #register .list-btn input {
+        width: 100%;
+    }
+
+    #header {
+        padding: 5px 20px;
+    }
+    
+}
