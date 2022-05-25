@@ -1,31 +1,38 @@
 body {
     margin: 0;
 }
+
 header #logo, .header-wrapper  {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 #logo > a {
     width: 70px;
 }
+
 ul.user-action {
     list-style: none;
     padding: 0;
     display: flex;
     margin: 0;
 }
+
 #header {
     padding: 5px 50px;
     box-shadow: 0 1px 2px hsl(0deg 0% 0% / 5%), 0 1px 4px hsl(0deg 0% 0% / 5%), 0 2px 8px hsl(0deg 0% 0% / 5%);
 }
+
 ul.user-action li:not(:first-child) {
     margin-left: 15px;
 }
+
 ul.user-action li a {
     text-decoration: none;
     color: #000;
 }
+
 .manager-user table {
     width: 80%;
     border: 1px solid #ccd0d4;
@@ -34,19 +41,24 @@ ul.user-action li a {
     border-spacing: 0;
     margin: 25px auto;
 }
+
 .manager-user table th, .manager-user table td {
     border-bottom: 1px solid #ccd0d4;
     padding: 8px;
 }
+
 .manager-user table tr {
     transition: 0.3s;
 }
+
 .manager-user table tbody tr:hover {
     background-color: #80808021;
 }
+
 .text-center {
     text-align: center;
 }
+
 .manager-user table tr a, .manager-user table tr .remove {
     padding: 5px 10px;
     border-radius: 5px;
@@ -57,18 +69,23 @@ ul.user-action li a {
     border: 1px solid transparent;
     height: 30px;
 }
+
 .manager-user table tr form {
     display: inline-block;
 }
+
 .edit {
     background-color: green;
 }
+
 .remove {
     background-color: red;
 }
+
 .add-user {
     text-align: right;
 }
+
 .add-user span {
     margin: 50px 20px 20px;
     text-align: right;
@@ -79,9 +96,11 @@ ul.user-action li a {
     cursor: pointer;
     display: inline-block;
 }
+
 .manager-user table thead tr {
     background: #80808063;
 }
+
 #edit-user, #create-user, #login, #register {
     width: 100%;
     margin: auto;
@@ -92,28 +111,25 @@ ul.user-action li a {
     padding: 10px;
     text-align: center;
 }
+
 #edit-user h3, #create-user h3, #login h3, #register h3{
     font-size: 22px;
 }
+
 #edit-user form label, #create-user form label, #login form label, #register form label {
     min-width: 130px;
     text-align: left;
     display: inline-block;
 }
+
 #edit-user .form-group, #create-user .form-group, #login .form-group, #register .form-group {
     margin-bottom: 10px;
 }
-#edit-user form input, #create-user form input, #login .form-group > input, #register .form-group > input {
-    height: 27px;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid gray;
-    padding: 5px 10px;
-    width: calc(100% - 170px);
-}
+
 #edit-user form .list-btn, #create-user form .list-btn, #login form .list-btn, #register .list-btn {
     margin-top: 20px;
 }
+
 #edit-user form .list-btn .back, #create-user form .list-btn .back {
     background: green;
     font-size: 14px;
@@ -123,22 +139,34 @@ ul.user-action li a {
     text-decoration: none;
     color: #fff;
 }
+
 #edit-user .list-btn input.button, #create-user .list-btn input.button {
     height: 29px;
     width: auto;
     cursor: pointer;
     display: inline-block;
+    min-width: 60px;
 }
+
 ul.user-action li button {
     border: none;
     background: transparent;
     padding: 0;
     cursor: pointer;
 }
+
 .list-note {
     color: red;
     margin-top: 20px;
 }
+
+.copyright {
+    background: #6875f5;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
 #login .login-btn input, #register .list-btn input {
     color: #fff;
     background: #008037;
@@ -152,45 +180,142 @@ ul.user-action li button {
     height: unset;
     cursor: pointer;
 }
+
 #login form .list-btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
+header nav.nav-menu {
+    display: none;
+}
+
+header nav.nav-menu i {
+    font-size: 20px;
+}
+
+/* menu mobi */
+
+.menu-mobi {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 360px;
+    height: 100vh;
+    transition: .3s all ease-in-out;
+    z-index: 3001;
+    background-color: #f8f7f7;
+}
+
+.menu-mobi.active {
+    left: 0;
+}
+
+.menu-mobi #logo {
+    max-width: 50px;
+}
+
+.menu-mobi .btn-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    color: #222;
+}
+
+.menu-mobi .btn-close i {
+    font-size: 30px;
+}
+
+.menu-mobi .user-action {
+    display: block;
+    padding: 0 20px;
+    margin-top: 30px;
+}
+
+.menu-mobi ul.user-action li {
+    position: relative;
+    margin-left: 0;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.menu-mobi ul.user-action li a, .menu-mobi ul.user-action li button {
+    font-size: 19px;
+    line-height: 25px;
+    text-transform: uppercase;
+}
+
+.menu-mobi .menu-top {
+    padding: 20px;
+}
+
+
+#overlay {
+    position: fixed;
+    background: #000;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    z-index: 3000;
+}
+
+
 
 @media only screen and (max-width: 768px) {
     .manager-user table {
         width: 1000px;
     }
+
     .manager-user .list-user {
         white-space: normal;
         overflow-x: scroll;
     }
-    .manager-user .box-table {
-        width: 90%;
-        margin: auto;
+
+    header nav.nav-menu {
+        display: block;
+    }
+
+    header .user-action {
+        display: none;
     }
 }
 @media only screen and (max-width: 480px) {
     #logo > a {
         width: 50px;
     }
+
     #edit-user, #create-user, #login, #register {
         max-width: 80%;
     }
+
     #edit-user form label, #create-user form label, #login form label, #register form label {
         display: block;
     }
+
     #edit-user form input, #create-user form input, #login .form-group > input, #register .form-group > input {
         width: calc(100% - 20px);
         margin-top: 6px;
         display: block;
     }
+
     #login .login-btn input, #register .list-btn input {
         width: 100%;
     }
+
     #header {
         padding: 5px 20px;
+    }
+    
+}
+@media only screen and (max-width: 384px) {
+    .menu-mobi, div#modal-confirm-delete .modal-dialog {
+        width: 100% !important;
     }
 }

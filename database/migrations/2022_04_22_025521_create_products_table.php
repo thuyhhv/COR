@@ -16,12 +16,14 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('pro_name');
-            $table->string('pro_slug')->unique();
             $table->string('pro_avatar')->unique();
-            $table->tinyInteger('pro_status')->default(1);
+            $table->integer('pro_quantity')->unique();
+            $table->float('pro_price')->unique();
             $table->string('description')->nullable();
-            $table->integer('pro_parent_id')->default(0)->index();
+            $table->unsignedBigInteger('pro_parent_id');
             $table->timestamps();
+
+            $table->foreign('pro_parent_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
