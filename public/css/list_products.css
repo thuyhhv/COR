@@ -87,7 +87,7 @@ td.images img {
     font-size: 22px;
 }
 
-#edit-user form label, #create-book form label, #login form label, #register form label {
+#edit-user form label, #create-user form label, #create-book form label, #login form label, #register form label {
     width: 100%;
     text-align: left;
     display: inline-block;
@@ -98,7 +98,7 @@ td.images img {
     margin-bottom: 10px;
 }
 
-#edit-user form input, #create-book form input, #login .form-group > input, #register .form-group > input {
+#edit-user form input, #create-user form input, #create-book form input, #login .form-group > input, #register .form-group > input {
     height: 27px;
     font-size: 14px;
     border-radius: 6px;
@@ -233,10 +233,6 @@ div#modal-confirm-delete .modal-dialog {
         width: 50px;
     }
 
-    #edit-user, #create-book, #login, #register {
-        max-width: 80%;
-    }
-
     #edit-user form label, #create-book form label, #login form label, #register form label {
         display: block;
     }
@@ -250,7 +246,8 @@ div#modal-confirm-delete .modal-dialog {
         width: 100%;
     }
 
-    #header {
-        padding: 5px 20px;
+    #edit-user, #create-user, #login, #register {
+        min-height: calc(100vh - 102px);
     }
+
 }
