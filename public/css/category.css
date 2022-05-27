@@ -152,10 +152,6 @@ input.hidden {
         width: 50px;
     }
 
-    #edit-user, #create-book, #login, #register {
-        max-width: 80%;
-    }
-
     #edit-user form label, #create-book form label, #login form label, #register form label {
         display: block;
     }
@@ -164,8 +160,9 @@ input.hidden {
         width: 100%;
     }
 
-    #header {
-        padding: 5px 20px;
+    .container {
+        padding: 0 20px;
+        min-height: calc(100vh - 102px);
     }
-    
+
 }
