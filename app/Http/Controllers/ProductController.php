@@ -7,6 +7,9 @@ use App\Repositories\Product\ProductRepositoryInterface;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\File as File2;
 use App\Models\Category;
+use App\Traits\CsvTrait;
+use App\Traits\ProductTrait;
+use Illuminate\Support\Str; 
 
 class ProductController extends Controller
 {
@@ -14,6 +17,8 @@ class ProductController extends Controller
      * @var ProductRepositoryInterface|\App\Repositories\Repository
      */
     protected $productRepo;
+    use CsvTrait;
+    use ProductTrait;
 
     public function __construct(ProductRepositoryInterface $productRepo)
     {
@@ -116,5 +121,12 @@ class ProductController extends Controller
         $this->productRepo->delete($id);
         
         return redirect()->back();
+    }
+
+    public function export(Request $request)
+    {
+        $products = $this->allProduct()->toArray();
+        $filename = Str::slug($products[0]['pro_name'], '-') . "-products_" . time() . ".csv";
+        return $this->exportCsv($products, $filename);
     }
 }

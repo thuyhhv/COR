@@ -57,8 +57,7 @@ td.images img {
     text-align: right;
 }
 
-.add-book span {
-    margin: 50px 20px 20px;
+.add-book span, .export span {
     text-align: right;
     padding: 5px;
     background-color: blue;
@@ -66,6 +65,11 @@ td.images img {
     color: #fff;
     cursor: pointer;
     display: inline-block;
+    margin-right: 5px;
+}
+
+.d-flex {
+    display: flex;
 }
 
 .manager-book table thead tr {
@@ -248,6 +252,12 @@ div#modal-confirm-delete .modal-dialog {
 
     #edit-user, #create-user, #login, #register {
         min-height: calc(100vh - 102px);
+    }
+
+}
+@media only screen and (max-width: 414px) {
+    #edit-user h3, #create-book h3, #login h3, #register h3 {
+        font-size: 19px;
     }
 
 }

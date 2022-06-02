@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\File as File2;
-
+use App\Traits\CsvTrait;
+use App\Traits\CategoryTrait;
+use App\Models\Category;
+use Illuminate\Support\Str; 
 
 class CategoryController extends Controller
 {
@@ -14,6 +17,8 @@ class CategoryController extends Controller
      * @var CategoryRepositoryInterface|\App\Repositories\Repository
      */
     protected $categoryRepo;
+    use CsvTrait;
+    use CategoryTrait;
 
     public function __construct(categoryRepositoryInterface $categoryRepo)
     {
@@ -114,5 +119,12 @@ class CategoryController extends Controller
         $this->categoryRepo->delete($id);
         
         return redirect()->back();
+    }
+
+    public function export(Request $request)
+    {
+        $categories = $this->allCategory()->toArray();
+        $filename = Str::slug($categories[0]['name'], '-') . "-category_" . time() . ".csv";
+        return $this->exportCsv($categories, $filename);
     }
 }

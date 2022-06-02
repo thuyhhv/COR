@@ -44,17 +44,6 @@
     text-align: right;
 }
 
-.add-book span {
-    margin: 50px 20px 20px;
-    text-align: right;
-    padding: 5px;
-    background-color: blue;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-}
-
 .manager-category table thead tr {
     background: #80808063;
 }
