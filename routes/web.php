@@ -46,6 +46,7 @@ Route::group(['prefix' => 'products' , 'as' => 'products.'],function(){
 	Route::get('/edit/{id}',[ProductController::class, 'edit'])->name('edit');
 	Route::post('/edit/{id}',[ProductController::class, 'update'])->name('update');
 	Route::post('/delete/{id}',[ProductController::class, 'destroy'])->name('delete');
+	Route::get('/export',[ProductController::class, 'export'])->name('export');
 });
 
 Route::group(['prefix' => 'categories' , 'as' => 'categories.'],function(){
@@ -55,4 +56,5 @@ Route::group(['prefix' => 'categories' , 'as' => 'categories.'],function(){
 	Route::get('/edit/{id}',[CategoryController::class, 'edit'])->name('edit');
 	Route::post('/edit/{id}',[CategoryController::class, 'update'])->name('update');
 	Route::post('/delete/{id}',[CategoryController::class, 'destroy'])->name('delete');
+	Route::get('/export',[CategoryController::class, 'export'])->name('export');
 });

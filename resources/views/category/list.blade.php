@@ -4,7 +4,10 @@
 <section class="manager-category">
     <div class="container">
         <h1>{{ __('Quản lý danh mục Sách') }}</h1>
-        <div class="add-book"><a href="{{ route('categories.create') }}" class="button"><span>{{ __('Add category') }}</span></a></div> 
+        <div class="action-top d-flex">
+            <div class="add-book"><a href="{{ route('categories.create') }}" class="button"><span>{{ __('Add category') }}</span></a></div> 
+            <div class="export"><a href="{{ route('categories.export') }}" class="button"><span>{{ __('Export CSV') }}</span></a></div> 
+        </div>
         <div class="list-category">
             <div class="box-table">
                 <table class="table table-hover table-list-user">

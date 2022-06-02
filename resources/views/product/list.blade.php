@@ -4,7 +4,11 @@
 <section class="manager-book">
     <div class="container">
         <h1>{{ __('Quản lý Sách') }}</h1>
-        <div class="add-book"><a href="{{ route('products.create') }}" class="button"><span>{{ __('Add book') }}</span></a></div> 
+         
+        <div class="action-top d-flex">
+            <div class="add-book"><a href="{{ route('products.create') }}" class="button"><span>{{ __('Add book') }}</span></a></div>
+            <div class="export"><a href="{{ route('products.export') }}" class="button"><span>{{ __('Export CSV') }}</span></a></div> 
+        </div>
         <div class="list-book">
             <div class="box-table">
                 <table>
