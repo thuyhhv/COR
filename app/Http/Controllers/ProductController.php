@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Traits\CsvTrait;
 use App\Traits\ProductTrait;
 use Illuminate\Support\Str; 
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -26,12 +27,23 @@ class ProductController extends Controller
         $this->productRepo = $productRepo;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = $this->productRepo->getProduct();
         $categories = Category::select('id','name')->get();
 
-        return view('product.list', ['products' => $products, 'categories' => $categories]);
+        $products = $this->productRepo->getProduct($request);
+        $start_date = Carbon::now()->subDays(30)->format('Y-m-d');
+        
+        $data = [
+            'products' => $products,
+            'categories' => $categories,
+            'keyword' => $request->keyword,
+            'start_date' => $start_date,
+            'end_date' => $request->end_date,
+            'category'=> $request->category,
+        ];
+
+        return view('product.list', $data);
     }
 
     public function show($id)
@@ -57,62 +69,18 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $data = $request->all();
+        
+		$product = $this->productRepo->postProduct($request);
 
-        $files = [];
-        if($request->hasfile('pro_avatar'))
-		{
-			foreach($request->file('pro_avatar') as $file)
-			{
-			    $name = time().rand(1,100).'.'.$file->extension();
-			    $file->move(public_path('files_product'), $name);  
-			    $files[] = $name;  
-			}
-		}
-		$product = $this->productRepo->create($data);
-
-		$product->pro_avatar = $files;
-
-		$product->save();
-  
-        return redirect()->back()->with('success', 'Data Your files has been successfully added');
+        return redirect()->back();
 
     }
 
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $product = $this->productRepo->updateProduct($request, $id);
 
-        $product = $this->productRepo->update($id, $data);
-
-        $files = [];
-        $files_remove = [];
-        if($request->hasfile('pro_avatar'))
-		{
-			foreach($request->file('pro_avatar') as $file)
-			{
-			    $name = time().rand(1,100).'.'.$file->extension();
-			    $file->move(public_path('files_product'), $name);  
-			    $files[] = $name;  
-			}
-		}
-
-		if (isset($data['images_uploaded'])) {
-			$files_remove = array_diff(json_decode($data['images_uploaded_origin']), $data['images_uploaded']);
-			$files = array_merge($data['images_uploaded'], $files);
-		} else {
-			$files_remove = json_decode($data['images_uploaded_origin']);
-		}
-  
-        $file = $this->productRepo->find($id);
-		$file->pro_avatar = $files;
-		if($file->save()) {
-			foreach ($files_remove as $file_name) {
-				File2::delete(public_path("files_product/".$file_name));
-			}
-		}
-
-        return redirect()->back()->with('success', 'Data Your files has been successfully updated');
+        return redirect()->back();
 
     }
 

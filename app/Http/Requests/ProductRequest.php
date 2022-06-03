@@ -24,7 +24,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'pro_name' => 'required|min:2|unique:products,pro_name',
+            'pro_name' => 'required|min:2|unique:products,pro_name,'. $this->id.',id',
             'pro_avatar' => 'required',
             'pro_quantity' => 'required|min:0',
             'pro_price' => 'required|min:0',

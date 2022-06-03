@@ -10,6 +10,7 @@ use App\Traits\CsvTrait;
 use App\Traits\CategoryTrait;
 use App\Models\Category;
 use Illuminate\Support\Str; 
+use Carbon\Carbon;
 
 class CategoryController extends Controller
 {
@@ -26,11 +27,19 @@ class CategoryController extends Controller
         $this->categoryRepo = $categoryRepo;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories = $this->categoryRepo->getCategory();
+        $categories = $this->categoryRepo->getCategory($request);
+        $start_date = Carbon::now()->subDays(30)->format('Y-m-d');
+        
+        $data = [
+            'categories' => $categories,
+            'keyword' => $request->keyword,
+            'start_date' => $start_date,
+            'end_date' => $request->end_date,
+        ];
 
-        return view('category.list', ['categories' => $categories]);
+        return view('category.list', $data);
     }
 
     public function show($id)
@@ -54,63 +63,18 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        $data = $request->all();
+		$categories = $this->categoryRepo->postCategory($request);
 
-        $files = [];
-        if($request->hasfile('avatar'))
-		{
-			foreach($request->file('avatar') as $file)
-			{
-			    $name = time().rand(1,100).'.'.$file->extension();
-			    $file->move(public_path('files'), $name);  
-			    $files[] = $name;  
-			}
-		}
-  
-		$categories = $this->categoryRepo->create($data);
-
-		$categories->avatar = $files;
-
-		$categories->save();
-  
-        return redirect()->back()->with('success', 'Data Your files has been successfully added');
+        return redirect()->back();
 
     }
 
     public function update(Request $request, $id)
     {
-        $data = $request->all();
 
-        $categories = $this->categoryRepo->update($id, $data);
+        $categories = $this->categoryRepo->updateCategory($request, $id);
 
-        $files = [];
-        $files_remove = [];
-        if($request->hasfile('avatar'))
-		{
-			foreach($request->file('avatar') as $file)
-			{
-			    $name = time().rand(1,100).'.'.$file->extension();
-			    $file->move(public_path('files'), $name);  
-			    $files[] = $name;  
-			}
-		}
-
-		if (isset($data['images_uploaded'])) {
-			$files_remove = array_diff(json_decode($data['images_uploaded_origin']), $data['images_uploaded']);
-			$files = array_merge($data['images_uploaded'], $files);
-		} else {
-			$files_remove = json_decode($data['images_uploaded_origin']);
-		}
-  
-        $file = $this->categoryRepo->find($id);
-		$file->avatar = $files;
-		if($file->save()) {
-			foreach ($files_remove as $file_name) {
-				File2::delete(public_path("files/".$file_name));
-			}
-		}
-
-        return redirect()->back()->with('success', 'Data Your files has been successfully updated');
+        return redirect()->back();
 
     }
 
