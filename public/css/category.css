@@ -125,6 +125,31 @@ input.hidden {
     min-height: calc(100vh - 122px);
 }
 
+form.form-search {
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+form.form-search input, form.form-search select {
+    height: 27px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    padding: 5px;
+    min-width: 200px;
+}
+
+form.form-search button {
+    height: 38px;
+    padding: 5px;
+    min-width: 70px;
+}
+
+form.form-search select {
+    height: 39px;
+}
+
 
 @media only screen and (max-width: 768px) {
     .manager-category table {

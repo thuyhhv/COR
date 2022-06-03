@@ -5,6 +5,9 @@ use App\Repositories\RepositoryInterface;
 
 interface CategoryRepositoryInterface extends RepositoryInterface
 {
-    //ví dụ: lấy 5 sản phầm đầu tiên
-    public function getCategory();
+    public function getCategory($request);
+
+    public function postCategory($request);
+
+    public function updateCategory($request, $id);
 }
