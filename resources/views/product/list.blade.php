@@ -9,18 +9,19 @@
             <div class="add-book"><a href="{{ route('products.create') }}" class="button"><span>{{ __('Add book') }}</span></a></div>
             <div class="export"><a href="{{ route('products.export') }}" class="button"><span>{{ __('Export CSV') }}</span></a></div> 
         </div>
+        <form action="{{ route('products.index')}}" method="get" class="form-search">
+            <input type="text" name="keyword" value="{{ $keyword }}" placeholder="Keyword">
+            <input type="date" name="date_start" value="{{ $start_date }}" >
+            <input type="date" name="date_end" value="{{ $end_date }}" >
+            <select name="category">
+                @foreach ($categories as $k => $item)
+                    <option value="{{ $item->id }}" {{ ($item->id == $category)? 'selected':'' }}>{{ $item->name }}</option>
+                @endforeach
+            </select>
+            <button type="submit">Search</button>
+        </form>
         <div class="list-book">
-            <form action="{{ route('products.index')}}" method="get" class="form-search">
-                <input type="text" name="keyword" value="{{ $keyword }}" placeholder="Keyword">
-                <input type="date" name="date_start" value="{{ $start_date }}" >
-                <input type="date" name="date_end" value="{{ $end_date }}" >
-                <select name="category">
-                    @foreach ($categories as $k => $item)
-                        <option value="{{ $item->id }}" {{ ($item->id == $category)? 'selected':'' }}>{{ $item->name }}</option>
-                    @endforeach
-                </select>
-                <button type="submit">Search</button>
-            </form>
+            
             <div class="box-table">
                 <table>
                     <tr>

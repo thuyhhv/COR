@@ -8,14 +8,14 @@
             <div class="add-book"><a href="{{ route('categories.create') }}" class="button"><span>{{ __('Add category') }}</span></a></div> 
             <div class="export"><a href="{{ route('categories.export') }}" class="button"><span>{{ __('Export CSV') }}</span></a></div> 
         </div>
-        <div class="list-category">
-            <form action="{{ route('categories.index')}}" method="get" class="form-search">
-                <input type="text" name="keyword" value="{{ $keyword }}" placeholder="Keyword">
-                <input type="date" name="date_start" value="{{ $start_date }}" >
-                <input type="date" name="date_end" value="{{ $end_date }}" >
+        <form action="{{ route('categories.index')}}" method="get" class="form-search">
+            <input type="text" name="keyword" value="{{ $keyword }}" placeholder="Keyword">
+            <input type="date" name="date_start" value="{{ $start_date }}" >
+            <input type="date" name="date_end" value="{{ $end_date }}" >
 
-                <button type="submit">Search</button>
-            </form>
+            <button type="submit">Search</button>
+        </form>
+        <div class="list-category">
             <div class="box-table">
                 <table class="table table-hover table-list-user">
                     <tr>
