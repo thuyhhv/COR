@@ -87,10 +87,6 @@ td.images img {
     text-align: center;
 }
 
-#edit-user h3, #create-book h3, #login h3, #register h3{
-    font-size: 22px;
-}
-
 #edit-user form label, #create-user form label, #create-book form label, #login form label, #register form label {
     width: 100%;
     text-align: left;
@@ -98,31 +94,17 @@ td.images img {
     margin-bottom: 5px;
 }
 
-#edit-user .form-group, #create-book .form-group, #login .form-group, #register .form-group {
+.form-group {
     margin-bottom: 10px;
 }
 
-#edit-user form input, #create-user form input, #create-book form input, #login .form-group > input, #register .form-group > input {
+.form-group > input {
     height: 27px;
     font-size: 14px;
     border-radius: 6px;
     border: 1px solid gray;
-    padding: 5px 0;
-    width: 100%;
-}
-
-#edit-user form .list-btn, #create-book form .list-btn, #login form .list-btn, #register .list-btn {
-    margin-top: 20px;
-}
-
-#edit-user form .list-btn .back, #create-book form .list-btn .back {
-    background: green;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid gray;
-    padding: 5px 10px;
-    text-decoration: none;
-    color: #fff;
+    padding: 5px;
+    width: -webkit-fill-available;
 }
 
 #create-book .list-btn input.button {
@@ -138,20 +120,6 @@ select#category {
     height: 39px;
     border: 1px solid grey;
     border-radius: 5px;
-}
-
-#login .login-btn input, #register .list-btn input {
-    color: #fff;
-    background: #008037;
-    border: 1px solid #008037;
-    font-weight: bold;
-    font-size: 13px;
-    line-height: 20px;
-    padding: 6px 15px;
-    border-radius: 8px;
-    width: 100%;
-    height: unset;
-    cursor: pointer;
 }
 
 #login form .list-btn {
@@ -253,7 +221,7 @@ div#modal-confirm-delete .modal-dialog {
     }
 
     #edit-user, #create-user, #login, #register {
-        min-height: calc(100vh - 102px);
+        min-height: calc(100vh - 142px);
     }
 
 }

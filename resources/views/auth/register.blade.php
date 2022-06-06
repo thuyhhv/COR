@@ -1,7 +1,7 @@
 @extends('admin.index')
 @section('content')
 
-    <div id="register">
+    <div id="register" class="container">
         <div class="box-form">
             <h3>{{ __('Register') }}</h3>
             <form method="POST" action="{{ route('register') }}">

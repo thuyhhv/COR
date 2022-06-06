@@ -48,11 +48,7 @@
     background: #80808063;
 }
 
-#edit-user form .list-btn, #create-book form .list-btn, #login form .list-btn, #register .list-btn {
-    margin-top: 20px;
-}
-
-#edit-user form .list-btn .back, #create-book form .list-btn .back {
+.list-btn .back {
     background: green;
     font-size: 14px;
     border-radius: 6px;
@@ -60,20 +56,6 @@
     padding: 5px 10px;
     text-decoration: none;
     color: #fff;
-}
-
-#login .login-btn input, #register .list-btn input {
-    color: #fff;
-    background: #008037;
-    border: 1px solid #008037;
-    font-weight: bold;
-    font-size: 13px;
-    line-height: 20px;
-    padding: 6px 15px;
-    border-radius: 8px;
-    width: 100%;
-    height: unset;
-    cursor: pointer;
 }
 
 #login form .list-btn {
@@ -121,8 +103,8 @@ input.hidden {
 }
 
 .container {
-    padding: 0 20px;
-    min-height: calc(100vh - 122px);
+    padding: 20px;
+    min-height: calc(100vh - 160px);
 }
 
 form.form-search {
@@ -138,6 +120,7 @@ form.form-search input, form.form-search select {
     border: 1px solid gray;
     padding: 5px;
     min-width: 200px;
+    margin-bottom: 5px;
 }
 
 form.form-search button {
@@ -148,6 +131,8 @@ form.form-search button {
 
 form.form-search select {
     height: 39px;
+    padding: 0;
+    width: 212px;
 }
 
 
@@ -175,8 +160,7 @@ form.form-search select {
     }
 
     .container {
-        padding: 0 20px;
-        min-height: calc(100vh - 102px);
+        min-height: calc(100vh - 142px);
     }
 
 }

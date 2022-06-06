@@ -109,14 +109,10 @@ ul.user-action li a {
     border-radius: 20px;
     padding: 10px;
     text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
 }
 
 #edit-user, #create-user, #login, #register {
-    min-height: calc(100vh - 122px);
+    min-height: calc(100vh - 160px);
     position: relative;
 }
 
@@ -130,22 +126,8 @@ ul.user-action li a {
     display: inline-block;
 }
 
-#edit-user .form-group, #create-user .form-group, #login .form-group, #register .form-group {
-    margin-bottom: 10px;
-}
-
 #edit-user form .list-btn, #create-user form .list-btn, #login form .list-btn, #register .list-btn {
     margin-top: 20px;
-}
-
-#edit-user form .list-btn .back, #create-user form .list-btn .back {
-    background: green;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid gray;
-    padding: 5px 10px;
-    text-decoration: none;
-    color: #fff;
 }
 
 #edit-user .list-btn input.button, #create-user .list-btn input.button {
@@ -299,6 +281,16 @@ header nav.nav-menu i {
     header .user-action {
         display: none;
     }
+
+    form.form-search {
+        max-width: 100% !important;
+    }
+}
+@media only screen and (max-width: 736px) {
+    form.form-search input, form.form-search select {
+        min-width: 115px;
+    }
+
 }
 @media only screen and (max-width: 480px) {
     #logo > a {
@@ -327,6 +319,10 @@ header nav.nav-menu i {
         padding: 5px 20px;
     }
     
+    form.form-search input, form.form-search select {
+        width: -webkit-fill-available !important;
+        margin-bottom: 5px;
+    }
 }
 @media only screen and (max-width: 384px) {
     .menu-mobi, div#modal-confirm-delete .modal-dialog {
