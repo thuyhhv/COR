@@ -14,23 +14,23 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
     public function getCategory($request)
     {
-		$keyword = isset($request->keyword)? $request->keyword : '';
-		$start_date = isset($request->date_start)? $request->date_start : '';
-		$end_date = isset($request->date_end)? $request->date_end : '';
+        $keyword = isset($request->keyword)? $request->keyword : '';
+        $start_date = isset($request->date_start)? $request->date_start : '';
+        $end_date = isset($request->date_end)? $request->date_end : '';
 
         $categories = $this->model->query();
 
-		if ($keyword != "" ) {
-			$categories = $categories->where(function ($query) use ($keyword) {
-                $query->where('name','like','%'.$keyword.'%');
+        if ($keyword != "") {
+            $categories = $categories->where(function ($query) use ($keyword) {
+                $query->where('name', 'like', '%'.$keyword.'%');
             });
-		}
+        }
 
-		if ($end_date != "" ) {
-			$categories = $categories->whereDate( 'created_at', '>=', $start_date )->whereDate( 'created_at', '<=', $end_date);
-		}
+        if ($end_date != "") {
+            $categories = $categories->whereDate('created_at', '>=', $start_date)->whereDate('created_at', '<=', $end_date);
+        }
 
-		return $categories->get();
+        return $categories->get();
     }
 
     public function postCategory($request)
@@ -38,55 +38,51 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         $data = $request->all();
 
         $files = [];
-        if($request->hasfile('avatar'))
-		{
-			foreach($request->file('avatar') as $file)
-			{
-			    $name = time().rand(1,100).'.'.$file->extension();
-			    $file->move(public_path('files'), $name);  
-			    $files[] = $name;  
-			}
-		}
+        if ($request->hasfile('avatar')) {
+            foreach ($request->file('avatar') as $file) {
+                $name = time().rand(1, 100).'.'.$file->extension();
+                $file->move(public_path('files'), $name);
+                $files[] = $name;
+            }
+        }
   
-		$categories = $this->model->create($data);
+        $categories = $this->model->create($data);
 
-		$categories->avatar = $files;
+        $categories->avatar = $files;
 
-		$categories->save();
+        $categories->save();
     }
 
     public function updateCategory($request, $id)
     {
         $data = $request->all();
 
-		$categories_id = $this->model->find($id);
+        $categories_id = $this->model->find($id);
 
-        $categories_id->update( $data);
+        $categories_id->update($data);
 
         $files = [];
         $files_remove = [];
-        if($request->hasfile('avatar'))
-		{
-			foreach($request->file('avatar') as $file)
-			{
-			    $name = time().rand(1,100).'.'.$file->extension();
-			    $file->move(public_path('files'), $name);  
-			    $files[] = $name;  
-			}
-		}
+        if ($request->hasfile('avatar')) {
+            foreach ($request->file('avatar') as $file) {
+                $name = time().rand(1, 100).'.'.$file->extension();
+                $file->move(public_path('files'), $name);
+                $files[] = $name;
+            }
+        }
 
-		if (isset($data['images_uploaded'])) {
-			$files_remove = array_diff(json_decode($data['images_uploaded_origin']), $data['images_uploaded']);
-			$files = array_merge($data['images_uploaded'], $files);
-		} else {
-			$files_remove = json_decode($data['images_uploaded_origin']);
-		}
+        if (isset($data['images_uploaded'])) {
+            $files_remove = array_diff(json_decode($data['images_uploaded_origin']), $data['images_uploaded']);
+            $files = array_merge($data['images_uploaded'], $files);
+        } else {
+            $files_remove = json_decode($data['images_uploaded_origin']);
+        }
   
-		$categories_id->avatar = $files;
-		if($categories_id->save()) {
-			foreach ($files_remove as $file_name) {
-				File2::delete(public_path("files/".$file_name));
-			}
-		}
+        $categories_id->avatar = $files;
+        if ($categories_id->save()) {
+            foreach ($files_remove as $file_name) {
+                File2::delete(public_path("files/".$file_name));
+            }
+        }
     }
 }

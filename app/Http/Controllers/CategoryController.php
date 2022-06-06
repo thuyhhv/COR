@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File as File2;
 use App\Traits\CsvTrait;
 use App\Traits\CategoryTrait;
 use App\Models\Category;
-use Illuminate\Support\Str; 
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 class CategoryController extends Controller
@@ -63,10 +63,9 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-		$categories = $this->categoryRepo->postCategory($request);
+        $categories = $this->categoryRepo->postCategory($request);
 
         return redirect()->back();
-
     }
 
     public function update(Request $request, $id)
@@ -75,7 +74,6 @@ class CategoryController extends Controller
         $categories = $this->categoryRepo->updateCategory($request, $id);
 
         return redirect()->back();
-
     }
 
     public function destroy($id)
