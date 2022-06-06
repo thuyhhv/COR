@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File as File2;
 use App\Models\Category;
 use App\Traits\CsvTrait;
 use App\Traits\ProductTrait;
-use Illuminate\Support\Str; 
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 class ProductController extends Controller
@@ -29,7 +29,7 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $categories = Category::select('id','name')->get();
+        $categories = Category::select('id', 'name')->get();
 
         $products = $this->productRepo->getProduct($request);
         $start_date = Carbon::now()->subDays(30)->format('Y-m-d');
@@ -55,14 +55,14 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::select('id','name')->get();
+        $categories = Category::select('id', 'name')->get();
         return view('product.create', ['categories' => $categories]);
     }
 
     public function edit($id)
     {
         $products = $this->productRepo->find($id);
-        $categories = Category::select('id','name')->get();
+        $categories = Category::select('id', 'name')->get();
 
         return view('product.edit', ['products' => $products, 'categories' => $categories]);
     }
@@ -70,10 +70,9 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         
-		$product = $this->productRepo->postProduct($request);
+        $product = $this->productRepo->postProduct($request);
 
         return redirect()->back();
-
     }
 
     public function update(Request $request, $id)
@@ -81,7 +80,6 @@ class ProductController extends Controller
         $product = $this->productRepo->updateProduct($request, $id);
 
         return redirect()->back();
-
     }
 
     public function destroy($id)

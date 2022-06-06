@@ -88,8 +88,8 @@ class UserController extends Controller
         $attr['name'] = $request->user_name;
         $attr['password'] = Hash::make($request->password);
         $attr->save();
-        if($attr) {
-            if($attr->wasChanged()) {
+        if ($attr) {
+            if ($attr->wasChanged()) {
                 return redirect()->route('user.index');
             }
         }
@@ -107,7 +107,4 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('user.index');
     }
-
-    
-
 }
