@@ -49,6 +49,15 @@
                         @enderror
                     </div>
 
+                    <div class="form-group">
+                        <label for="role">{{ __('Role') }}</label>
+                        <select id="role" class="form-control" name="roles" required>
+                            @foreach($roles as $id => $role)
+                                <option value="{{$role->id}}">{{$role->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="form-group list-btn">
                         <a href="{{ route('user.index') }}" class="back">{{ __('Back') }}</a>
                         <input type="submit" class="button" value="Create">

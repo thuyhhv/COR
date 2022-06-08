@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PermissionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,9 @@ Route::group(['prefix'=>'user' , 'as' => 'user.'], function () {
 
 Route::group(['prefix' => 'products' , 'as' => 'products.'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('index');
-    Route::get('/create', [ProductController::class, 'create'])->name('create');
+    Route::get('/create', [ProductController::class, 'create'])
+        ->name('create');
+        // ->middleware('can:products.create');
     Route::post('/create', [ProductController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit');
     Route::post('/edit/{id}', [ProductController::class, 'update'])->name('update');
@@ -57,4 +60,14 @@ Route::group(['prefix' => 'categories' , 'as' => 'categories.'], function () {
     Route::post('/edit/{id}', [CategoryController::class, 'update'])->name('update');
     Route::post('/delete/{id}', [CategoryController::class, 'destroy'])->name('delete');
     Route::get('/export', [CategoryController::class, 'export'])->name('export');
+});
+
+Route::group(['prefix' => 'permission' , 'as' => 'permission.'], function () {
+    Route::get('/', [PermissionsController::class, 'index'])->name('index');
+    Route::get('/create', [PermissionsController::class, 'create'])->name('create');
+    Route::post('/create', [PermissionsController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [PermissionsController::class, 'edit'])->name('edit');
+    Route::post('/edit/{id}', [PermissionsController::class, 'update'])->name('update');
+    Route::post('/delete/{id}', [PermissionsController::class, 'destroy'])->name('delete');
+    Route::get('/export', [PermissionsController::class, 'export'])->name('export');
 });

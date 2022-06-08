@@ -98,13 +98,17 @@ td.images img {
     margin-bottom: 10px;
 }
 
-.form-group > input {
+.form-group > input, .form-group > select {
     height: 27px;
     font-size: 14px;
     border-radius: 6px;
     border: 1px solid gray;
     padding: 5px;
     width: -webkit-fill-available;
+}
+
+.form-group > select {
+    height: 39px;
 }
 
 #create-book .list-btn input.button {

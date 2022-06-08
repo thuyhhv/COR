@@ -16,10 +16,26 @@ class Product extends Model
         'pro_price',
         'description',
         'pro_parent_id',
+        'created_by',
     ];
 
     public function setProAvatarAttribute($value)
     {
         $this->attributes['pro_avatar'] = json_encode($value);
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
+    }
+
+    public function scopeUnpublished($query)
+    {
+        return $query->where('published', false);
     }
 }
