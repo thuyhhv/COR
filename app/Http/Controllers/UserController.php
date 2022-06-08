@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -23,7 +24,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $roles = Role::select('id', 'name')->get();
+        return view('user.index', ['roles' => $roles]);
     }
 
     /**
@@ -33,7 +35,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $roles = Role::select('id', 'name')->get();
+        return view('user.create', ['roles' => $roles]);
     }
 
     /**
@@ -49,6 +52,7 @@ class UserController extends Controller
             $attr['email'] = $request->email;
             $attr['password'] = Hash::make($request->password);
             $attr->save();
+
             return redirect()->route('user.index');
     }
 
@@ -89,9 +93,7 @@ class UserController extends Controller
         $attr['password'] = Hash::make($request->password);
         $attr->save();
         if ($attr) {
-            if ($attr->wasChanged()) {
-                return redirect()->route('user.index');
-            }
+            return redirect()->route('user.index');
         }
     }
 

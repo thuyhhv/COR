@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+// use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Policies\PostPolicy;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +24,21 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Category\CategoryRepositoryInterface::class,
             \App\Repositories\Category\CategoryRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\Permission\PermissionsRepositoryInterface::class,
+            \App\Repositories\Permission\PermissionsRepository::class
+        );
     }
+
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        'App\Model' => 'App\Policies\productPolicy',
+    ];
 
     /**
      * Bootstrap any application services.
@@ -31,6 +47,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->registerPolicies();
     }
 }

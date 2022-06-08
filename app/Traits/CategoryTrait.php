@@ -12,5 +12,4 @@ trait CategoryTrait
         $Categories = Category::all();
         return $Categories;
     }
-
 }
